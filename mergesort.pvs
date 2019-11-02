@@ -33,6 +33,10 @@ MEASURE length(l1) + length(l2)
 %%%%% as result a permutation of the append of these lists.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+append_reverse_null: LEMMA
+FORALL(l1: list[T]):
+  append(l1, null) = append(null, l1)
+
 merge_size : LEMMA 
 FORALL (l1, l2 : list[T]) : 
   length(merge(l1,l2)) = length(l1) + length(l2)
