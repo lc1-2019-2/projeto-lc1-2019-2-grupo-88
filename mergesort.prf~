@@ -237,6 +237,99 @@
     (pred type-eq-decl nil defined_types nil))
    shostak))
  (merge_occurrence 0
+  (prove_merge_occurrence "provando merge occurrence" 3781702545
+   ("" (induct "l1")
+    (("1" (skolem 1 ("l2" "x"))
+      (("1" (expand "merge" 1)
+        (("1" (expand "append" 1)
+          (("1" (expand "occurrences" 1) (("1" (propax) nil nil)) nil))
+          nil))
+        nil))
+      nil)
+     ("2" (skolem 1 ("v1" "tl1"))
+      (("2" (flatten)
+        (("2" (induct "l2")
+          (("1" (skolem 1 "x")
+            (("1" (expand "merge" 1)
+              (("1" (expand "occurrences" 1 3)
+                (("1" (lemma "append_reverse_null")
+                  (("1" (inst -1 "cons(v1, tl1)")
+                    (("1" (replace -1 1)
+                      (("1" (hide -1)
+                        (("1" (expand "append" 1)
+                          (("1" (propax) nil nil)) nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil)
+           ("2" (skolem 1 ("v2" "tl2"))
+            (("2" (flatten)
+              (("2" (skolem 1 "x")
+                (("2" (inst -1 "x")
+                  (("2" (expand "merge" 1)
+                    (("2" (lift-if)
+                      (("2" (prop)
+                        (("1" (expand "occurrences" 1 1)
+                          (("1" (lift-if)
+                            (("1" (prop)
+                              (("1"
+                                (inst -4 "cons(v2, tl2)" "x")
+                                (("1"
+                                  (replace -4 1)
+                                  (("1"
+                                    (expand "occurrences" 1 3)
+                                    (("1" (assert) nil nil))
+                                    nil))
+                                  nil))
+                                nil)
+                               ("2"
+                                (inst -3 "cons(v2, tl2)" "x")
+                                (("2"
+                                  (replace -3 2)
+                                  (("2"
+                                    (expand "occurrences" 2 3)
+                                    (("2" (assert) nil nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil)
+                         ("2" (expand "occurrences" 2 1)
+                          (("2" (hide 1 -2)
+                            (("2" (lift-if)
+                              (("2"
+                                (prop)
+                                (("1"
+                                  (expand "occurrences" 1 3)
+                                  (("1" (assert) nil nil))
+                                  nil)
+                                 ("2"
+                                  (expand "occurrences" 2 3)
+                                  (("2"
+                                    (lift-if)
+                                    (("2" (prop) nil nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   nil shostak)
   (merge_occurrence-1 nil 3589039505
    ("" (skolem 1 ("_" "_" x))
     (("" (measure-induct "length(l1) + length(l2)" (l1 l2))
@@ -305,49 +398,446 @@
         nil))
       nil))
     nil)
-   ((pred type-eq-decl nil defined_types nil)
-    (well_founded? const-decl "bool" orders nil)
-    (nnint_plus_nnint_is_nnint application-judgement "nonneg_int"
-     integers nil)
-    (measure_induction formula-decl nil measure_induction nil)
-    (T formal-type-decl nil mergesort nil)
-    (list type-decl nil list_adt nil)
-    (number nonempty-type-decl nil numbers nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (number_field_pred const-decl "[number -> boolean]" number_fields
-     nil)
-    (number_field nonempty-type-from-decl nil number_fields nil)
-    (real_pred const-decl "[number_field -> boolean]" reals nil)
-    (real nonempty-type-from-decl nil reals nil)
-    (rational_pred const-decl "[real -> boolean]" rationals nil)
-    (rational nonempty-type-from-decl nil rationals nil)
-    (integer_pred const-decl "[rational -> boolean]" integers nil)
-    (int nonempty-type-eq-decl nil integers nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (>= const-decl "bool" reals nil)
-    (naturalnumber type-eq-decl nil naturalnumbers nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (nat nonempty-type-eq-decl nil naturalnumbers nil)
-    (length def-decl "nat" list_props nil)
-    (< const-decl "bool" reals nil)
-    (wf_nat formula-decl nil naturalnumbers nil)
-    (merge def-decl "list[T]" mergesort nil)
-    (occurrences def-decl "nat" sorting_aux nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (IMPLIES const-decl "[bool, bool -> bool]" booleans nil)
-    (append_null formula-decl nil list_props nil)
+   ((cons? adt-recognizer-decl "[list -> boolean]" list_adt nil)
+    (cons adt-constructor-decl "[[T, list] -> (cons?)]" list_adt nil)
+    (append_reverse_null formula-decl nil mergesort nil)
     (posint_plus_nnint_is_posint application-judgement "posint"
      integers nil)
-    (real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (cons? adt-recognizer-decl "[list -> boolean]" list_adt nil)
-    (cdr adt-accessor-decl "[(cons?) -> list]" list_adt nil)
+    (nnint_plus_nnint_is_nnint application-judgement "nonneg_int"
+     integers nil)
     (append def-decl "list[T]" list_props nil)
-    (null adt-constructor-decl "(null?)" list_adt nil)
-    (null? adt-recognizer-decl "[list -> boolean]" list_adt nil))
+    (list_induction formula-decl nil list_adt nil)
+    (T formal-type-decl nil mergesort nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (merge def-decl "list[T]" mergesort nil)
+    (occurrences def-decl "nat" sorting_aux nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (>= const-decl "bool" reals nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (number nonempty-type-decl nil numbers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (list type-decl nil list_adt nil))
+   shostak))
+ (append_occurrences 0
+  (append_occurrences-1 nil 3781704541
+   ("" (induct "l1")
+    (("1" (skolem 1 ("l2" "x"))
+      (("1" (expand "append")
+        (("1" (expand "occurrences") (("1" (propax) nil nil)) nil))
+        nil))
+      nil)
+     ("2" (skolem 1 ("v1" "tl1"))
+      (("2" (flatten)
+        (("2" (skolem 1 ("l2" "x"))
+          (("2" (expand "append" 1)
+            (("2" (expand "occurrences" 1 1)
+              (("2" (lift-if)
+                (("2" (prop)
+                  (("1" (expand "occurrences" 1 2)
+                    (("1" (lift-if)
+                      (("1" (assert) (("1" (inst -2 "l2" "x") nil nil))
+                        nil))
+                      nil))
+                    nil)
+                   ("2" (expand "occurrences" 2 2)
+                    (("2" (lift-if)
+                      (("2" (prop) (("2" (inst -1 "l2" "x") nil nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (list_induction formula-decl nil list_adt nil)
+    (T formal-type-decl nil mergesort nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (append def-decl "list[T]" list_props nil)
+    (occurrences def-decl "nat" sorting_aux nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (>= const-decl "bool" reals nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (number nonempty-type-decl nil numbers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (list type-decl nil list_adt nil))
    shostak))
  (merge_is_permutation 0
+  (prove_merge_is_permutation "provamos que merge é permutation"
+   3781707572
+   ("" (induct "l1")
+    (("1" (skolem 1 "l2")
+      (("1" (expand "merge" 1)
+        (("1" (expand "permutations" 1) (("1" (propax) nil nil)) nil))
+        nil))
+      nil)
+     ("2" (skolem 1 ("v1" "tl1"))
+      (("2" (flatten)
+        (("2" (induct "l2")
+          (("1" (expand "merge" 1)
+            (("1" (lemma "append_reverse_null")
+              (("1" (inst -1 "cons(v1, tl1)")
+                (("1" (replace -1 1)
+                  (("1" (expand "permutations" 1)
+                    (("1" (propax) nil nil)) nil))
+                  nil))
+                nil))
+              nil))
+            nil)
+           ("2" (skolem 1 ("v2" "tl2"))
+            (("2" (flatten)
+              (("2" (expand "merge" 1)
+                (("2" (lift-if)
+                  (("2" (prop)
+                    (("1" (hide -1)
+                      (("1" (inst -2 "cons(v2, tl2)")
+                        (("1" (expand "append" 1)
+                          (("1" (expand "permutations" 1)
+                            (("1" (skolem 1 "x")
+                              (("1"
+                                (lemma "merge_occurrence")
+                                (("1"
+                                  (expand "occurrences" 1)
+                                  (("1"
+                                    (lift-if)
+                                    (("1"
+                                      (prop)
+                                      (("1"
+                                        (lemma "append_occurrences")
+                                        (("1"
+                                          (hide -2 -4 -5)
+                                          (("1"
+                                            (inst
+                                             -1
+                                             "tl1"
+                                             "cons(v2, tl2)"
+                                             "x")
+                                            (("1"
+                                              (inst
+                                               -2
+                                               "tl1"
+                                               "cons(v2, tl2)"
+                                               "x")
+                                              (("1"
+                                                (replace -1 1)
+                                                (("1"
+                                                  (replace -2 1)
+                                                  (("1"
+                                                    (propax)
+                                                    nil
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil)
+                                       ("2"
+                                        (hide -2 -3)
+                                        (("2"
+                                          (lemma "append_occurrences")
+                                          (("2"
+                                            (inst
+                                             -1
+                                             "tl1"
+                                             "cons(v2, tl2)"
+                                             "x")
+                                            (("2"
+                                              (inst
+                                               -2
+                                               "tl1"
+                                               "cons(v2, tl2)"
+                                               "x")
+                                              (("2"
+                                                (replace -1 2)
+                                                (("2"
+                                                  (propax)
+                                                  nil
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil)
+                     ("2" (expand "permutations" 2)
+                      (("2" (skolem 2 "x")
+                        (("2" (expand "occurrences" 2 1)
+                          (("2" (lemma "append_occurrences")
+                            (("2" (lift-if)
+                              (("2"
+                                (prop)
+                                (("1"
+                                  (inst -2 "cons(v1, tl1)" "tl2" "x")
+                                  (("1"
+                                    (lemma "merge_occurrence")
+                                    (("1"
+                                      (inst
+                                       -1
+                                       "cons(v1, tl1)"
+                                       "tl2"
+                                       "x")
+                                      (("1"
+                                        (replace -1)
+                                        (("1"
+                                          (expand "append" 1)
+                                          (("1"
+                                            (expand "occurrences" 1 3)
+                                            (("1"
+                                              (lift-if)
+                                              (("1"
+                                                (prop)
+                                                (("1"
+                                                  (hide -4 -5 -6)
+                                                  (("1"
+                                                    (lemma
+                                                     "append_occurrences")
+                                                    (("1"
+                                                      (inst
+                                                       -1
+                                                       "tl1"
+                                                       "cons(v2, tl2)"
+                                                       "x")
+                                                      (("1"
+                                                        (replace -1)
+                                                        (("1"
+                                                          (expand
+                                                           "occurrences"
+                                                           1
+                                                           1)
+                                                          (("1"
+                                                            (lift-if)
+                                                            (("1"
+                                                              (assert)
+                                                              (("1"
+                                                                (expand
+                                                                 "occurrences"
+                                                                 1
+                                                                 2)
+                                                                (("1"
+                                                                  (propax)
+                                                                  nil
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil)
+                                                 ("2"
+                                                  (hide -3 -4 -5)
+                                                  (("2"
+                                                    (hide -1)
+                                                    (("2"
+                                                      (expand
+                                                       "occurrences"
+                                                       2
+                                                       1)
+                                                      (("2"
+                                                        (lift-if)
+                                                        (("2"
+                                                          (assert)
+                                                          (("2"
+                                                            (lemma
+                                                             "append_occurrences")
+                                                            (("2"
+                                                              (inst
+                                                               -1
+                                                               "tl1"
+                                                               "cons(v2, tl2)"
+                                                               "x")
+                                                              (("2"
+                                                                (replace
+                                                                 -1)
+                                                                (("2"
+                                                                  (expand
+                                                                   "occurrences"
+                                                                   2
+                                                                   4)
+                                                                  (("2"
+                                                                    (propax)
+                                                                    nil
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil)
+                                 ("2"
+                                  (hide 3 -1 -2 -3)
+                                  (("2"
+                                    (lemma "merge_occurrence")
+                                    (("2"
+                                      (lemma "append_occurrences")
+                                      (("2"
+                                        (inst
+                                         -1
+                                         "cons(v1, tl1)"
+                                         "cons(v2, tl2)"
+                                         "x")
+                                        (("2"
+                                          (replace -1)
+                                          (("2"
+                                            (hide -1)
+                                            (("2"
+                                              (inst
+                                               -1
+                                               "cons(v1, tl1)"
+                                               "tl2"
+                                               "x")
+                                              (("2"
+                                                (replace -1)
+                                                (("2"
+                                                  (expand
+                                                   "occurrences"
+                                                   2
+                                                   4)
+                                                  (("2"
+                                                    (assert)
+                                                    nil
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   nil shostak)
+  (prove_merge_permutation "provando merge permutation" 3781703976
+   ("" (induct "l1")
+    (("1" (skolem 1 "l2")
+      (("1" (expand "merge" 1)
+        (("1" (expand "permutations" 1) (("1" (propax) nil nil)) nil))
+        nil))
+      nil)
+     ("2" (skolem 1 ("v1" "tl1"))
+      (("2" (flatten)
+        (("2" (induct "l2")
+          (("1" (expand "merge" 1)
+            (("1" (lemma "append_reverse_null")
+              (("1" (inst -1 "cons(v1, tl1)")
+                (("1" (replace -1 1)
+                  (("1" (expand "permutations" 1)
+                    (("1" (propax) nil nil)) nil))
+                  nil))
+                nil))
+              nil))
+            nil)
+           ("2" (skolem 1 ("v2" "tl2"))
+            (("2" (flatten)
+              (("2" (expand "merge" 1)
+                (("2" (lift-if)
+                  (("2" (prop)
+                    (("1" (hide -1)
+                      (("1" (inst -2 "cons(v2, tl2)")
+                        (("1" (expand "append" 1)
+                          (("1" (expand "permutations" 1)
+                            (("1" (skolem 1 "x")
+                              (("1"
+                                (lemma "merge_occurrence")
+                                (("1" (postpone) nil nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil)
+                     ("2" (postpone) nil nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((list type-decl nil list_adt nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (permutations const-decl "bool" sorting_aux nil)
+    (merge def-decl "list[T]" mergesort nil)
+    (append def-decl "list[T]" list_props nil)
+    (T formal-type-decl nil mergesort nil)
+    (list_induction formula-decl nil list_adt nil)
+    (merge_occurrence formula-decl nil mergesort nil)
+    (append_occurrences formula-decl nil mergesort nil)
+    (nnint_plus_nnint_is_nnint application-judgement "nonneg_int"
+     integers nil)
+    (occurrences def-decl "nat" sorting_aux nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (append_reverse_null formula-decl nil mergesort nil)
+    (cons adt-constructor-decl "[[T, list] -> (cons?)]" list_adt nil)
+    (cons? adt-recognizer-decl "[list -> boolean]" list_adt nil))
+   shostak)
   (merge_is_permutation-1 nil 3589039689
    ("" (skeep)
     (("" (expand "permutations")
@@ -1295,6 +1785,33 @@
     (pred type-eq-decl nil defined_types nil))
    shostak))
  (merge_sort_is_permutation 0
+  (provando_questao_1 "provando questao 1" 3781709108
+   ("" (induct "l")
+    (("1" (expand "merge_sort")
+      (("1" (expand "length")
+        (("1" (expand "permutations") (("1" (propax) nil nil)) nil))
+        nil))
+      nil)
+     ("2" (skolem * ("v1" "tl1"))
+      (("2" (flatten)
+        (("2" (expand "merge_sort" 1)
+          (("2" (lift-if)
+            (("2" (prop)
+              (("1" (expand "permutations" 1) (("1" (propax) nil nil))
+                nil)
+               ("2" (expand "permutations" 2 1)
+                (("2" (skolem 2 "x")
+                  (("2" (lemma "merge_occurrence")
+                    (("2" (postpone) nil nil)) nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   nil shostak)
   (merge_sort_is_permutation-1 nil 3589041194
    ("" (induct "l") (("1" (postpone) nil nil) ("2" (postpone) nil nil))
     nil)
