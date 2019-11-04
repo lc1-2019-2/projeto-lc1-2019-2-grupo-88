@@ -55,6 +55,14 @@ merge_is_permutation : LEMMA
 FORALL (l1, l2 : list[T]) : 
   permutations(merge(l1,l2), append(l1,l2))
 
+merge_is_permutation_reverse : LEMMA
+FORALL (l1, l2 : list[T]) :
+  permutations(merge(l1, l2), append(l2, l1))
+
+permutation_append_switch : LEMMA
+FORALL (l, l1, l2 : list[T]) :
+  permutations(l, append(l1, l2)) IMPLIES permutations(l, append(l2, l1))
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Next lemma proves that merging sorted lists gives as
 %%%%% result a sorted list. 
@@ -91,6 +99,8 @@ merge_sort_is_sorted: LEMMA
 FORALL (l : list[T]) :
   is_sorted?(merge_sort(l))
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Question 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -101,6 +111,11 @@ FORALL (l : list[T]) :
 %%%%% function.                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+append_is_permutation: LEMMA
+  FORALL (l1, l2: list[T]) :
+    permutations(append(l1, l2), append(l2, l1))
+
 merge_sort_is_permutation: CONJECTURE
 FORALL (l : list[T]) :
   permutations(merge_sort(l), l)
