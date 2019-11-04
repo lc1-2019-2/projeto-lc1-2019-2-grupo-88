@@ -1,29 +1,4 @@
 (radix_sort
- (list_is_null_ornot_null 0
-  (list_is_null_ornot_null-1 nil 3781872541
-   ("" (induct "l")
-    (("" (skolem 1 ("v1" "tl1"))
-      (("" (flatten)
-        (("" (prop)
-          (("1" (skolem * ("v" "t"))
-            (("1" (inst 1 "v1" "tl1") nil nil)) nil)
-           ("2" (inst 1 "v1" "tl1") nil nil))
-          nil))
-        nil))
-      nil))
-    nil)
-   ((list_induction formula-decl nil list_adt nil)
-    (T formal-type-decl nil radix_sort nil)
-    (null adt-constructor-decl "(null?)" list_adt nil)
-    (null? adt-recognizer-decl "[list -> boolean]" list_adt nil)
-    (cons adt-constructor-decl "[[T, list] -> (cons?)]" list_adt nil)
-    (cons? adt-recognizer-decl "[list -> boolean]" list_adt nil)
-    (= const-decl "[T, T -> boolean]" equalities nil)
-    (OR const-decl "[bool, bool -> bool]" booleans nil)
-    (bool nonempty-type-eq-decl nil booleans nil)
-    (boolean nonempty-type-decl nil booleans nil)
-    (list type-decl nil list_adt nil))
-   shostak))
  (radixsort_permutes 0
   (radixsort_permutes-1 nil 3781872046
    ("" (measure-induct+ "length(l)" "l") (("" (postpone) nil nil)) nil)

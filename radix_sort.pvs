@@ -28,6 +28,11 @@ IMPORTING sorting, mergesort
 % <= and << 
  radixsort(l : list[T]) : list[T] = merge_sort[T,<<](merge_sort[T,<=](l))
 
+%% MEUS LEMMAS
+list_is_null_ornot_null : LEMMA
+  FORALL(l : list[T]) :
+    (EXISTS(v: T, t: list[T]) : l = cons(v, t)) OR l = null
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Question 2                                                 %%%
