@@ -63,6 +63,15 @@ permutation_append_switch : LEMMA
 FORALL (l, l1, l2 : list[T]) :
   permutations(l, append(l1, l2)) IMPLIES permutations(l, append(l2, l1))
 
+app_pref_suff_is_complete : LEMMA
+FORALL (l : list[T]) :
+  l = append(suffix(l, floor(length(l) / 2)), prefix(l, floor(length(l) / 2)))
+
+occurrence_pref_suff : LEMMA
+FORALL (l : list[T]) : FORALL(x : T) :
+  occurrences(l)(x) = occurrences(suffix(l, floor(length(l) / 2)))(x) + occurrences(prefix(l, floor(length(l) / 2)))(x)
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Next lemma proves that merging sorted lists gives as
 %%%%% result a sorted list. 

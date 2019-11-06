@@ -214,7 +214,6 @@
      nil)
     (even_minus_odd_is_odd application-judgement "odd_int" integers
      nil)
-    (l skolem-const-decl "list[T]" radix_sort nil)
     (cons? adt-recognizer-decl "[list -> boolean]" list_adt nil)
     (boolean nonempty-type-decl nil booleans nil)
     (list type-decl nil list_adt nil)
@@ -241,6 +240,228 @@
    ((T formal-type-decl nil radix_sort nil)
     (permutations const-decl "bool" sorting_aux nil))
    shostak))
+ (radix_sort_length 0
+  (radix_sort_length-1 nil 3782053328
+   ("" (measure-induct "length(l)" "l")
+    (("" (induct "x")
+      (("1" (flatten)
+        (("1" (expand "radixsort" 1)
+          (("1" (expand "merge_sort" 1)
+            (("1" (expand "length") (("1" (propax) nil nil)) nil))
+            nil))
+          nil))
+        nil)
+       ("2" (skolem 1 ("v1" "tl1"))
+        (("2" (flatten)
+          (("2" (split)
+            (("1" (expand "radixsort" 1 1) (("1" (postpone) nil nil))
+              nil)
+             ("2" (postpone) nil nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   nil shostak))
+ (merge_sort_length1 0
+  (merge_sort_length1-1 nil 3782054821
+   ("" (measure-induct "length(l)" "l")
+    (("" (skolem 1 "l1")
+      (("" (flatten)
+        (("" (expand "merge_sort" 1)
+          (("" (lift-if)
+            (("" (prop)
+              (("" (lemma "merge_size[T, <=]")
+                (("" (inst? -1)
+                  (("" (replace -1)
+                    (("" (hide -1)
+                      (("" (copy -1)
+                        (("" (inst? -1)
+                          (("" (lemma "length_prefix[T]")
+                            (("" (inst? -1)
+                              ((""
+                                (replace -1)
+                                ((""
+                                  (hide -1)
+                                  ((""
+                                    (assert)
+                                    ((""
+                                      (replace -1)
+                                      ((""
+                                        (hide -1)
+                                        ((""
+                                          (lemma "length_prefix[T]")
+                                          ((""
+                                            (inst? -2)
+                                            ((""
+                                              (inst? -1)
+                                              ((""
+                                                (hide -1)
+                                                ((""
+                                                  (lemma
+                                                   "length_suffix[T]")
+                                                  ((""
+                                                    (inst? -1)
+                                                    ((""
+                                                      (replace -1)
+                                                      ((""
+                                                        (hide -1)
+                                                        ((""
+                                                          (prop)
+                                                          (("1"
+                                                            (replace
+                                                             -1)
+                                                            (("1"
+                                                              (hide -1)
+                                                              (("1"
+                                                                (hide
+                                                                 1)
+                                                                (("1"
+                                                                  (assert)
+                                                                  nil
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil)
+                                                           ("2"
+                                                            (reveal -9)
+                                                            (("2"
+                                                              (expand
+                                                               "merge_sort"
+                                                               3)
+                                                              (("2"
+                                                                (lift-if)
+                                                                (("2"
+                                                                  (prop)
+                                                                  (("1"
+                                                                    (lemma
+                                                                     "length_1or0_is_simple")
+                                                                    (("1"
+                                                                      (inst?
+                                                                       -1)
+                                                                      (("1"
+                                                                        (assert)
+                                                                        nil
+                                                                        nil))
+                                                                      nil))
+                                                                    nil)
+                                                                   ("2"
+                                                                    (inst?
+                                                                     -1)
+                                                                    (("2"
+                                                                      (hide
+                                                                       2)
+                                                                      (("2"
+                                                                        (hide
+                                                                         -1)
+                                                                        (("2"
+                                                                          (both-sides
+                                                                           "+"
+                                                                           "floor(length(l1) / 2)"
+                                                                           2)
+                                                                          (("2"
+                                                                            (assert)
+                                                                            nil
+                                                                            nil))
+                                                                          nil))
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((nonneg_floor_is_nat application-judgement "nat" floor_ceil nil)
+    (nnrat_div_posrat_is_nnrat application-judgement "nonneg_rat"
+     rationals nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (below type-eq-decl nil nat_types nil)
+    (prefix def-decl "list[T]" sorting_aux nil)
+    (integer nonempty-type-from-decl nil integers nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (<= const-decl "bool" reals nil)
+    (floor const-decl "{i | i <= x & x < i + 1}" floor_ceil nil)
+    (/= const-decl "boolean" notequal nil)
+    (nznum nonempty-type-eq-decl nil number_fields nil)
+    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
+    (suffix def-decl "list[T]" sorting_aux nil)
+    (length_suffix formula-decl nil sorting_aux nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
+    (int_plus_int_is_int application-judgement "int" integers nil)
+    (length_1or0_is_simple formula-decl nil radix_sort nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (both_sides_plus_lt1 formula-decl nil real_props nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (nnint_plus_nnint_is_nnint application-judgement "nonneg_int"
+     integers nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (length_prefix formula-decl nil sorting_aux nil)
+    (merge_size formula-decl nil mergesort nil)
+    (merge_sort def-decl "list[T]" mergesort nil)
+    (<= formal-const-decl "(total_preorder?[T])" radix_sort nil)
+    (total_preorder? const-decl "bool" total_preorder nil)
+    (PRED type-eq-decl nil defined_types nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (wf_nat formula-decl nil naturalnumbers nil)
+    (< const-decl "bool" reals nil)
+    (length def-decl "nat" list_props nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (naturalnumber type-eq-decl nil naturalnumbers nil)
+    (>= const-decl "bool" reals nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (list type-decl nil list_adt nil)
+    (T formal-type-decl nil radix_sort nil)
+    (measure_induction formula-decl nil measure_induction nil)
+    (well_founded? const-decl "bool" orders nil)
+    (pred type-eq-decl nil defined_types nil))
+   shostak))
  (radixsort_permutes 0
   (tentativa-q2-caminho-diferente
    "tentando por outro caminho, usando permutações" 3782046479
@@ -252,7 +473,16 @@
             (("" (inst -1 "merge_sort[T, <=](l1)")
               (("" (lemma "merge_sort_is_permutation[T, <=]")
                 (("" (inst -1 "l1")
-                  (("" (hide -3) (("" (postpone) nil nil)) nil)) nil))
+                  (("" (hide -3)
+                    (("" (lemma "permutation_switch")
+                      ((""
+                        (inst -1
+                         "merge_sort[T, <<](merge_sort[T, <=](l1))"
+                         "merge_sort[T, <=](l1)" "l1")
+                        (("" (assert) nil nil)) nil))
+                      nil))
+                    nil))
+                  nil))
                 nil))
               nil))
             nil))
@@ -260,7 +490,39 @@
         nil))
       nil))
     nil)
-   nil shostak)
+   ((pred type-eq-decl nil defined_types nil)
+    (well_founded? const-decl "bool" orders nil)
+    (measure_induction formula-decl nil measure_induction nil)
+    (T formal-type-decl nil radix_sort nil)
+    (list type-decl nil list_adt nil)
+    (number nonempty-type-decl nil numbers nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (rational_pred const-decl "[real -> boolean]" rationals nil)
+    (rational nonempty-type-from-decl nil rationals nil)
+    (integer_pred const-decl "[rational -> boolean]" integers nil)
+    (int nonempty-type-eq-decl nil integers nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (>= const-decl "bool" reals nil)
+    (naturalnumber type-eq-decl nil naturalnumbers nil)
+    (nat nonempty-type-eq-decl nil naturalnumbers nil)
+    (length def-decl "nat" list_props nil)
+    (< const-decl "bool" reals nil)
+    (wf_nat formula-decl nil naturalnumbers nil)
+    (radixsort const-decl "list[T]" radix_sort nil)
+    (permutations const-decl "bool" sorting_aux nil)
+    (merge_sort_is_permutation formula-decl nil mergesort nil)
+    (PRED type-eq-decl nil defined_types nil)
+    (total_preorder? const-decl "bool" total_preorder nil)
+    (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
+    (permutation_switch formula-decl nil radix_sort nil)
+    (<= formal-const-decl "(total_preorder?[T])" radix_sort nil)
+    (merge_sort def-decl "list[T]" mergesort nil))
+   shostak)
   (radixsort_permutes-1 nil 3781872046
    ("" (measure-induct "length(l)" "l")
     (("" (skolem 1 "l1")
@@ -509,5 +771,27 @@
     (total_preorder? const-decl "bool" total_preorder nil)
     (<< formal-const-decl "(total_preorder?[T])" radix_sort nil)
     (<= formal-const-decl "(total_preorder?[T])" radix_sort nil))
-   nil)))
+   nil))
+ (radixsort_sorts 0
+  (radixsort_sorts-1 nil 3782051880
+   ("" (measure-induct "length(l)" "l")
+    (("1" (skolem 1 "l1")
+      (("1" (flatten)
+        (("1" (expand "is_sorted?" 1)
+          (("1" (inst -1 "cdr(l1)")
+            (("1" (split -1)
+              (("1" (expand "is_sorted?" -1)
+                (("1" (expand "radixsort" -1 1)
+                  (("1" (postpone) nil nil)) nil))
+                nil)
+               ("2" (postpone) nil nil))
+              nil)
+             ("2" (postpone) nil nil))
+            nil))
+          nil))
+        nil))
+      nil)
+     ("2" (postpone) nil nil))
+    nil)
+   nil shostak)))
 
