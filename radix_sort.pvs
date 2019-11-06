@@ -40,6 +40,18 @@ length_1or0_is_simple : LEMMA
   FORALL(l : list[T]) :
     length(l) <= 1 IMPLIES (l = null OR EXISTS(v: T) : l = cons(v, null))
 
+length_ofcdr_is_smaller : LEMMA
+  FORALL(l : list[T]) : (NOT l = null) IMPLIES length(cdr(l)) < length(l)
+
+notcons_impliesnull : LEMMA
+  FORALL(l : list[T]) : NOT cons?(l) IMPLIES l = null
+
+permutation_null_is_null : LEMMA
+  FORALL(l : list[T]) : (permutations(l, null) OR permutations(null, l) IMPLIES l = null)
+
+permutation_switch : LEMMA
+  FORALL(l1, l2, l3 : list[T]) : (permutations(l1, l2) AND permutations(l2, l3)) IMPLIES permutations(l1, l3)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Question 2                                                 %%%
