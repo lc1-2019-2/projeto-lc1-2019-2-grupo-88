@@ -61,9 +61,6 @@ merge_sort_length1 : LEMMA
 merge_sort_length2 : LEMMA
   FORALL(l : list[T]) : length(merge_sort[T, <<](l)) = length(l)
 
-merge_sort_length3 : LEMMA
-  FORALL(l : list[T]) : length(merge_sort[T, lex](l)) = length(l)
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Question 2                                                 %%%
